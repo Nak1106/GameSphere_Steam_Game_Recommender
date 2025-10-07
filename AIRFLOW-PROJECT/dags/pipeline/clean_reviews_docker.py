@@ -28,7 +28,7 @@ def clean_reviews(spark):
     cleaned_df = raw_df.filter(
         col("review").isNotNull() & 
         col("app_id").isNotNull() & 
-        col("author.steamid").isNotNull()
+        col("`author.steamid`").isNotNull()
     )
     
     logger.info(f"After null removal: {cleaned_df.count()} rows")
@@ -47,7 +47,7 @@ def clean_reviews(spark):
     # Select relevant columns
     final_df = english_df.select(
         col("app_id").cast("integer"),
-        col("author.steamid").alias("user_id"),
+        col("`author.steamid`").alias("user_id"),
         col("review").alias("review_text"),
         col("review_clean"),
         col("voted_up").cast("boolean").alias("recommended"),
@@ -58,12 +58,12 @@ def clean_reviews(spark):
         col("steam_purchase").cast("boolean"),
         col("received_for_free").cast("boolean"),
         col("written_during_early_access").cast("boolean"),
-        col("author.num_games_owned").cast("integer").alias("user_games_owned"),
-        col("author.num_reviews").cast("integer").alias("user_reviews_count"),
-        col("author.playtime_forever").cast("integer").alias("playtime_forever"),
-        col("author.playtime_last_two_weeks").cast("integer").alias("playtime_recent"),
-        col("author.playtime_at_review").cast("integer").alias("playtime_at_review"),
-        col("author.last_played").cast("long").alias("last_played_timestamp")
+        col("`author.num_games_owned`").cast("integer").alias("user_games_owned"),
+        col("`author.num_reviews`").cast("integer").alias("user_reviews_count"),
+        col("`author.playtime_forever`").cast("integer").alias("playtime_forever"),
+        col("`author.playtime_last_two_weeks`").cast("integer").alias("playtime_recent"),
+        col("`author.playtime_at_review`").cast("integer").alias("playtime_at_review"),
+        col("`author.last_played`").cast("long").alias("last_played_timestamp")
     )
     
     # Write cleaned data to HDFS
