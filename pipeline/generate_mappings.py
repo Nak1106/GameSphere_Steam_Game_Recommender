@@ -5,7 +5,7 @@ from pyspark.sql.functions import row_number
 spark = SparkSession.builder \
     .appName("Generate Mappings") \
     .config("spark.driver.bindAddress", "127.0.0.1") \
-    .config("spark.hadoop.fs.defaultFS", "hdfs://localhost:9000") \
+    .config("spark.hadoop.fs.defaultFS", "hdfs://host.docker.internal:9000") \
     .getOrCreate()
 
 df = spark.read.parquet("hdfs:///project/processed/steam_review_english.parquet")

@@ -1,9 +1,10 @@
 # Working Airflow Setup for GameSphere
-version: '3.8'
 
 x-airflow-common:
   &airflow-common
-  image: apache/airflow:2.9.2
+  build:
+    context: .
+    dockerfile: Dockerfile
   environment: &airflow-common-env
     AIRFLOW__CORE__EXECUTOR: LocalExecutor
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
@@ -11,7 +12,7 @@ x-airflow-common:
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW__API__AUTH_BACKENDS: 'airflow.api.auth.backend.basic_auth'
-    _PIP_ADDITIONAL_REQUIREMENTS: apache-airflow-providers-apache-spark==4.7.1
+    JAVA_HOME: /usr/lib/jvm/java-17-openjdk-arm64
   volumes:
     - ./dags:/opt/airflow/dags
     - ./logs:/opt/airflow/logs

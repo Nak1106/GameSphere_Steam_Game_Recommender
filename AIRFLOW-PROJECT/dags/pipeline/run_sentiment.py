@@ -20,7 +20,7 @@ def create_spark_session():
     return SparkSession.builder \
         .appName("GameSphere-SentimentAnalysis") \
         .config("spark.hadoop.fs.defaultFS", "hdfs://host.docker.internal:9000") \
-        .config("spark.driver.bindAddress", "0.0.0.0") \
+        .config("spark.driver.bindAddress", "127.0.0.1") \
         .config("spark.sql.shuffle.partitions", "200") \
         .getOrCreate()
 

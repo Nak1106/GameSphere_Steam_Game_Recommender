@@ -18,7 +18,7 @@ def create_spark_session():
     return SparkSession.builder \
         .appName("GameSphere-DataCleaning") \
         .config("spark.hadoop.fs.defaultFS", "hdfs://localhost:9000") \
-        .config("spark.driver.bindAddress", "127.0.0.1") \
+        .config("spark.driver.bindAddress", "0.0.0.0") \
         .config("spark.sql.shuffle.partitions", "200") \
         .getOrCreate()
 
@@ -39,7 +39,7 @@ def clean_reviews(spark):
     cleaned_df = raw_df.filter(
         col("review").isNotNull() & 
         col("app_id").isNotNull() & 
-        col("author").isNotNull()
+        col("author.steamid").isNotNull()
     )
     
     # Clean text data

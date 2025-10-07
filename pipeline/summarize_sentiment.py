@@ -5,7 +5,7 @@ from pyspark.sql.types import IntegerType
 # ✅ Start Spark session
 spark = SparkSession.builder \
     .appName("Sentiment Summary Aggregator") \
-    .config("spark.hadoop.fs.defaultFS", "hdfs://localhost:9000") \
+    .config("spark.hadoop.fs.defaultFS", "hdfs://host.docker.internal:9000") \
     .config("spark.driver.bindAddress", "127.0.0.1") \
     .getOrCreate()
 
