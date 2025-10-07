@@ -1,0 +1,6 @@
+# FastAPI Service Requirements for GameSphere
+fastapi==0.111.0
+uvicorn[standard]==0.29.0
+pandas==2.2.2
+pyarrow==15.0.2
+pydantic==2.7.1

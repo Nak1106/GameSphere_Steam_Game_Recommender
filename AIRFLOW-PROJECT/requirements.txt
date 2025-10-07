@@ -1,0 +1,3 @@
+# Airflow Additional Requirements for GameSphere
+apache-airflow==2.9.2
+apache-airflow-providers-apache-spark==4.7.1
