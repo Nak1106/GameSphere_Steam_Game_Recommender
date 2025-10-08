@@ -50,7 +50,7 @@ def clean_reviews(spark):
         col("`author.steamid`").alias("user_id"),
         col("review").alias("review_text"),
         col("review_clean"),
-        col("voted_up").cast("boolean").alias("recommended"),
+        col("recommended").cast("boolean").alias("recommended"),
         col("votes_helpful").cast("integer"),
         col("votes_funny").cast("integer"),
         col("weighted_vote_score").cast("double"),
